@@ -20,7 +20,7 @@ export default class MessagesTable extends Component {
       <table>
         <thead>
           <tr>
-            <td colSpan="2">Read Count: {readCount}</td>
+            <td colSpan="2">Read Count: <span className="readCount">{readCount}</span></td>
           </tr>
         </thead>
         <tbody>
