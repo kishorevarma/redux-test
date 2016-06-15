@@ -18,3 +18,6 @@
 #To-Do
 - `CSS Modules`
 - `post-css`
+- `webpack.config.js` for production
+- `html-webpack-plugin`
+- tidy up code
