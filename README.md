@@ -8,6 +8,8 @@
 - Babel
 - Webpack
 - Eslint
+- Webpack-dev-server
+- react-transform-hmr
 
 #How to use
 - `npm install`
