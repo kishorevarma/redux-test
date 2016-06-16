@@ -7,11 +7,11 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { createMemoryHistory, match, RouterContext } from 'react-router';
-import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
-import { combineReducers, createStore, applyMiddleware } from 'redux';
+import { syncHistoryWithStore } from 'react-router-redux';
 import routes from '../shared/routes';
 import webpack from 'webpack';
 import reducers from '../shared/reducers';
+import buildStore from '../shared/store';
 
 const webpackConfig = require('../../webpack.config');
 const app = express();
@@ -29,26 +29,12 @@ if (NODE_ENV === 'development' || typeof NODE_ENV === 'undefined') {
 
 app.use((req, res, next) => {
   const memoryHistory = createMemoryHistory(req.path);
-  let store = createStore(
-    combineReducers({
-      ...reducers,
-      routing: routerReducer
-    }),
-    undefined,
-    applyMiddleware(routerMiddleware(memoryHistory))
-  );
+  let store = buildStore(reducers, undefined, memoryHistory);
   const history = syncHistoryWithStore(memoryHistory, store);
 
   function renderView(renderProps) {
     try {
-      store = createStore(
-        combineReducers({
-          ...reducers,
-          routing: routerReducer
-        }),
-        store.getState(),
-        applyMiddleware(routerMiddleware(memoryHistory))
-      );
+      store = buildStore(reducers, store.getState(), memoryHistory);
       const InitialView = (
         <Provider store={store}>
           <RouterContext {...renderProps} />
