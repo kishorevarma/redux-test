@@ -14,15 +14,17 @@ const defaultState = {
 
 const messagesReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case actionTypes.TOGGLE_READ:
+    case actionTypes.TOGGLE_READ: {
       const messages = state.messages;
       const readMessage = action.data;
-      const readCount = readMessage.read ? --state.readCount : ++state.readCount;
+      const readCount = readMessage.read ? state.readCount - 1 : state.readCount + 1;
       const index = findIndex(messages, message => message.id === readMessage.id);
       messages[index].read = !readMessage.read;
       return { ...state, messages, readCount };
-    default:
+    }
+    default: {
       return state;
+    }
   }
 };
 export default messagesReducer;

@@ -7,7 +7,7 @@
 - react-router-redux
 - Babel
 - Webpack
-- Eslint
+- Eslint (Learned to write pure function components introduced in react 0.14 react/prefer-stateless-function)
 - Webpack-dev-server
 - react-transform-hmr
 

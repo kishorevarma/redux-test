@@ -6,7 +6,8 @@ import MessageRow from './MessageRow';
 
 const propTypes = {
   messages: PropTypes.array,
-  readCount: PropTypes.number
+  readCount: PropTypes.number,
+  toggleRead: PropTypes.func
 };
 export default class MessagesTable extends Component {
 
@@ -15,8 +16,7 @@ export default class MessagesTable extends Component {
   }
   render() {
     const { messages = [], readCount } = this.props;
-
-    return(
+    return (
       <table>
         <thead>
           <tr>
@@ -25,9 +25,7 @@ export default class MessagesTable extends Component {
         </thead>
         <tbody>
         {
-          messages.map(message => {
-            return <MessageRow {...message} onClick={::this.toggleRead} key={message.id}/>;
-          })
+          messages.map(message => <MessageRow {...message} onClick={::this.toggleRead} key={message.id} />)
         }
         </tbody>
       </table>

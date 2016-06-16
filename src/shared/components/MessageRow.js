@@ -1,21 +1,19 @@
 /**
  * Created by kishorevarman on 15/06/16.
  */
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 const propTypes = {
   message: PropTypes.string,
   read: PropTypes.bool,
-  id: PropTypes.number
+  id: PropTypes.number,
+  onClick: PropTypes.func
 };
-export default class MessagesRow extends Component {
-  render() {
-    const {message, read, id, onClick} = this.props;
-    return (
-      <tr>
-        <td>{message}</td>
-        <td><input type="checkbox" checked={read} onClick={_ => onClick({id, read})}/></td>
-      </tr>
-    );
-  }
-}
+const MessagesRow = ({ message, read, id, onClick }) => (
+  <tr>
+    <td>{message}</td>
+    <td><input type="checkbox" checked={read} onClick={() => onClick({ id, read })} /></td>
+  </tr>
+);
+
 MessagesRow.propTypes = propTypes;
+export default MessagesRow;

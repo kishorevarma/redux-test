@@ -1,7 +1,7 @@
 /**
  * Created by kishorevarman on 14/06/16.
  */
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import MessagesTable from '../components/MessagesTable';
@@ -11,13 +11,10 @@ function mapStateToProps(state) {
     messages: state.messagesReducer.messages,
     readCount: state.messagesReducer.readCount
   };
-};
-
-@connect(mapStateToProps, actions)
-export default class MessagesContainer extends Component {
-  render() {
-    return (
-      <MessagesTable {...this.props} />
-    );
-  }
 }
+
+const MessagesContainer = ({ ...props }) => (
+  <MessagesTable {...props} />
+);
+
+export default connect(mapStateToProps, actions)(MessagesContainer);

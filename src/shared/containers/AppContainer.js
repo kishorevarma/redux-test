@@ -1,20 +1,16 @@
 /**
  * Created by kishorevarman on 14/06/16.
  */
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React, { PropTypes } from 'react';
 
 const propTypes = {
   children: PropTypes.any
 };
 
-export default class AppView extends Component {
-  render() {
-    return (
-      <div id="app-view">
-        {this.props.children}
-      </div>
-     );
-  }
-}
+const AppView = ({ children }) => (
+  <div id="app-view"> {children} </div>
+);
+
+
 AppView.propTypes = propTypes;
+export default AppView;
